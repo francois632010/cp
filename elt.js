@@ -1,4 +1,14 @@
 (function () {
+
+  function Zone (artCl = [], txtCl = []) {
+      this.zn = [
+        {
+          elt: "article",
+          classes: artCl
+        }
+      ]
+  }
+
   let buildElt = (what, ID, classes = []) => {
     let newElt = document.createElement(what);
     if (ID != "") newElt.setAttribute('id', ID);
@@ -13,6 +23,9 @@
     newZone.value = st;
     
     document.getElementsByTagName('form')[0].appendChild(newZone);
+
+    let testZone = new Zone(["a", `a${rank}`])
+    console.log(testZone)
 
   }
   
