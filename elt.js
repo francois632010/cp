@@ -1,10 +1,20 @@
 (function () {
 
-  function Zone (artCl = [], txtCl = []) {
+  function Zone (artCl = [], txtCl = [], cp = []) {
       this.zn = [
         {
           elt: "article",
-          classes: artCl
+          classes: artCl,
+          sub: [
+            {
+              elt: "textarea",
+              classes: txtCl
+            },
+            {
+              elt: "div",
+              classes: cp
+            }
+          ]
         }
       ]
   }
@@ -24,7 +34,7 @@
     
     document.getElementsByTagName('form')[0].appendChild(newZone);
 
-    let testZone = new Zone(["a", `a${rank}`])
+    let testZone = new Zone(["a", `a${rank}`], ['t', `t${rank}`], ['cp__btn', `cp__btn${rank}`])
     console.log(testZone)
 
   }
