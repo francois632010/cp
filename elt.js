@@ -26,7 +26,7 @@
 
     return newElt;
   }
-  let downOnZone = obj => {
+  let downOnZone = (obj, father) => {
   	for (let elt of obj) {
   	 	let id = "";
   	 	let classes = null;
@@ -39,6 +39,11 @@
   		console.log(classes)
   		newElt = buildElt(elt.elt, id, classes);
   		console.log(newElt);
+  		newElt.innerHTML = 'HEY HEY';
+  		father.appendChild(newElt);
+  		console.log('Je suis ton père');
+  		console.log(document.getElementsByTagName(elt.elt)[obj.indexOf(elt)]);
+  		if (elt.sub) downOnZone(elt.sub, document.getElementsByTagName(elt.elt)[obj.indexOf(elt)]);
   		
   		
   	}
@@ -46,7 +51,7 @@
 
   let addAZone = (st, rank) => {
   	let newZone = new Zone(["a", `a${rank}`], ['t', `t${rank}`], ['cp__btn', `cp__btn${rank}`]);
-  	downOnZone(newZone.zn);
+  	downOnZone(newZone.zn, document.getElementsByTagName('form')[0]);
   /*
     console.log(st + " au rang : " + rank);
     let newZone = buildElt('textArea', "", [`t${rank}`]);
