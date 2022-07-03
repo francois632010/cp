@@ -7,7 +7,11 @@ let initPourProd = () => {
 let build = (datas = []) => {
   if (datas.length > 0) {
     document.getElementsByTagName('form')[0].removeChild(document.getElementsByTagName('article')[0]);
-    for (let i = 0; i < datas.length; i++) elt.addAZone(datas[i], i);
+    for (let i = 0; i < datas.length; i++) {
+    	elt.addAZone(datas[i], i);
+    	document.getElementsByTagName('textArea')[i].innerHTML = sessionStorage.getItem(i);
+    }
+    
   }
 }
 
