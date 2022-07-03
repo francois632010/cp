@@ -42,8 +42,8 @@
   		newElt.innerHTML = 'HEY HEY';
   		father.appendChild(newElt);
   		console.log('Je suis ton père');
-  		console.log(document.getElementsByTagName(elt.elt)[obj.indexOf(elt)]);
-  		if (elt.sub) downOnZone(elt.sub, document.getElementsByTagName(elt.elt)[obj.indexOf(elt)]);
+  		console.log(newElt);
+  		if (elt.sub) downOnZone(elt.sub, newElt);
   		
   		
   	}
