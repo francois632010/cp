@@ -26,17 +26,37 @@
 
     return newElt;
   }
+  let downOnZone = obj => {
+  	for (let elt of obj) {
+  	 	let id = "";
+  	 	let classes = null;
+  	 	let newElt = null;
+  		console.log(elt);
+  		if (elt.id) id = elt.id;
+  		if (elt.classes) classes = [...elt.classes];
+  		
+  		console.log(id)
+  		console.log(classes)
+  		newElt = buildElt(elt.elt, id, classes);
+  		console.log(newElt);
+  		
+  		
+  	}
+  }
 
   let addAZone = (st, rank) => {
+  	let newZone = new Zone(["a", `a${rank}`], ['t', `t${rank}`], ['cp__btn', `cp__btn${rank}`]);
+  	downOnZone(newZone.zn);
+  /*
     console.log(st + " au rang : " + rank);
     let newZone = buildElt('textArea', "", [`t${rank}`]);
     newZone.value = st;
     
     document.getElementsByTagName('form')[0].appendChild(newZone);
 
-    let testZone = new Zone(["a", `a${rank}`], ['t', `t${rank}`], ['cp__btn', `cp__btn${rank}`])
+    let testZone = new Zone(["a", `a${rank}`], ['t', `t${rank}`], ['cp__btn', `cp__btn${rank}`]);
     console.log(testZone)
-
+*/
   }
   
   
