@@ -1,6 +1,7 @@
 (function () {
-
-  function Zone (artCl = [], txtCl = [], cp = []) {
+// il faudra mettre des ... pour les tableaux
+// il faudra une fonction d'init dans Zone pour éviter tous les tableaux dans la definition
+  function Zone (artCl = [], txtCl = [], cp = [], ctrlBtn = [], adBtn = [], supprBtn = []) {
       this.zn = [
         {
           elt: "article",
@@ -14,10 +15,41 @@
               elt: "div",
               classes: cp,
               inner: 'Copier'
+            },
+            {
+              elt: "div",
+              classes: ['ctrl'],
+              sub: [
+                {
+                  elt: 'div',
+                  classes: ctrlBtn,
+                  inner: 'Contrôle'
+                },
+                {
+                  elt: 'ul',
+                  classes: ['ctrls__btn', 'no-visible'],
+                  sub: [
+                    {
+                      elt: 'li',
+                      classes: adBtn,
+                      inner: '+++'
+                    },
+                    {
+                      elt: 'li',
+                      classes: supprBtn,
+                      inner: '---'
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
       ]
+  }
+  Zone.prototype.makeClasses = (rank) => {
+    console.log('N° du rang : ' + rank)
+    console.log(this)
   }
 
   let buildElt = (what, ID, classes = [], inner = "") => {
@@ -39,7 +71,6 @@
   		if (elt.inner) inner = elt.inner;
   		
   		newElt = buildElt(elt.elt, id, classes, inner);
-  		console.log( inner)
   		//newElt.innerHTML = 'HEY HEY';
   		father.appendChild(newElt);
   		
@@ -51,8 +82,9 @@
 
   let addAZone = (st, rank) => {
   
-  	let newZone = new Zone(["a", `a${rank}`], ['t', `t${rank}`], ['cp__btn', `cp__btn${rank}`]);
-  	downOnZone(newZone.zn, document.getElementsByTagName('form')[0]);
+  	let newZone = new Zone(["a", `a${rank}`], ['t', `t${rank}`], ['cp__btn', `cp__btn${rank}`], ['ctrl__btn', `ctrl__btn${rank}`], ['ad__btn',`ad__btn${rank}`], ['suppr__bt', `suppr__btn${rank}`]);
+  	newZone.makeClasses(rank);
+    downOnZone(newZone.zn, document.getElementsByTagName('form')[0]);
   /*
     console.log(st + " au rang : " + rank);
     let newZone = buildElt('textArea', "", [`t${rank}`]);
