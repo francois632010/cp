@@ -49,7 +49,7 @@
   }
   Zone.prototype.makeClasses = (rank) => {
     console.log('N° du rang : ' + rank)
-    console.log(this)
+    console.log(Zone)
   }
 
   let buildElt = (what, ID, classes = [], inner = "") => {
