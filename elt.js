@@ -1,19 +1,16 @@
 (function () {
 // il faudra mettre des ... pour les tableaux
 // il faudra une fonction d'init dans Zone pour éviter tous les tableaux dans la definition
-  function Zone (artCl = [], txtCl = [], cp = [], ctrlBtn = [], adBtn = [], supprBtn = []) {
+  function Zone (rank) {
       this.zn = [
         {
           elt: "article",
-          classes: artCl,
           sub: [
             {
-              elt: "textarea",
-              classes: txtCl
+              elt: "textarea"
             },
             {
               elt: "div",
-              classes: cp,
               inner: 'Copier'
             },
             {
@@ -22,7 +19,6 @@
               sub: [
                 {
                   elt: 'div',
-                  classes: ctrlBtn,
                   inner: 'Contrôle'
                 },
                 {
@@ -31,13 +27,15 @@
                   sub: [
                     {
                       elt: 'li',
-                      classes: adBtn,
                       inner: '+++'
                     },
                     {
                       elt: 'li',
-                      classes: supprBtn,
                       inner: '---'
+                    },
+                    {
+                    	elt: 'li',
+                    	inner: 'test'
                     }
                   ]
                 }
@@ -46,16 +44,28 @@
           ]
         }
       ]
+      this.makeClasses = rank => {
+      	this.zn[0].classes = ['a', `a${rank}`];
+      	this.zn[0].sub[0].classes = ['t', `t${rank}`];
+      	this.zn[0].sub[1].classes = ['cp__btn', `cp__btn${rank}`];
+      	this.zn[0].sub[2].sub[0].classes = ['ctrl__btn', `ctrl__btn${rank}`];
+      	this.zn[0].sub[2].sub[1].sub[0].classes = ['ad__btn',`ad__btn${rank}`];
+      	this.zn[0].sub[2].sub[1].sub[1].classes = ['suppr__bt', `suppr__btn${rank}`];
+      	this.zn[0].sub[2].sub[1].sub[2].classes = [`test${rank}`];
+      	console.log(this.zn[0].sub[0]);
+      	
+      	}
   }
+/*
   Zone.prototype.makeClasses = (rank) => {
     console.log('N° du rang : ' + rank)
     console.log(Zone)
   }
-
+*/
   let buildElt = (what, ID, classes = [], inner = "") => {
     let newElt = document.createElement(what);
     if (ID != "") newElt.setAttribute('id', ID);
-    if (classes.length > 0) for (let elt of classes) newElt.classList.add(elt);
+    if (classes) for (let elt of classes) newElt.classList.add(elt);
     if (inner != "") newElt.innerHTML = inner;
 
     return newElt;
@@ -82,7 +92,7 @@
 
   let addAZone = (st, rank) => {
   
-  	let newZone = new Zone(["a", `a${rank}`], ['t', `t${rank}`], ['cp__btn', `cp__btn${rank}`], ['ctrl__btn', `ctrl__btn${rank}`], ['ad__btn',`ad__btn${rank}`], ['suppr__bt', `suppr__btn${rank}`]);
+  	let newZone = new Zone(rank);
   	newZone.makeClasses(rank);
     downOnZone(newZone.zn, document.getElementsByTagName('form')[0]);
   /*
