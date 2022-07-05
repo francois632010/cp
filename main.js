@@ -14,7 +14,10 @@ let build = (datas = []) => {
     
   }
 }
+//fonction listen sur tous les contrôles
+//si un contrôle est activé --> on affiche les contrôle et on lance une fonction listen sur tous les sous contrôle
 
 initPourProd();
-console.log(reg.getStorageTab(true))
+console.log(reg.getStorageTab(true));
+//lancer build avec session si session>0 sinon local si local == 0 on ne fait rien
 build(reg.getStorageTab(true));

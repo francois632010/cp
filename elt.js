@@ -44,7 +44,7 @@
           ]
         }
       ]
-      this.makeClasses = rank => {
+      this.makeClasses = () => {
       	this.zn[0].classes = ['a', `a${rank}`];
       	this.zn[0].sub[0].classes = ['t', `t${rank}`];
       	this.zn[0].sub[1].classes = ['cp__btn', `cp__btn${rank}`];
@@ -52,7 +52,7 @@
       	this.zn[0].sub[2].sub[1].sub[0].classes = ['ad__btn',`ad__btn${rank}`];
       	this.zn[0].sub[2].sub[1].sub[1].classes = ['suppr__bt', `suppr__btn${rank}`];
       	this.zn[0].sub[2].sub[1].sub[2].classes = [`test${rank}`];
-      	console.log(this.zn[0].sub[0]);
+      	//console.log(this.zn[0].sub[0]);
       	
       	}
   }
@@ -93,7 +93,7 @@
   let addAZone = (st, rank) => {
   
   	let newZone = new Zone(rank);
-  	newZone.makeClasses(rank);
+  	newZone.makeClasses();
     downOnZone(newZone.zn, document.getElementsByTagName('form')[0]);
   /*
     console.log(st + " au rang : " + rank);
