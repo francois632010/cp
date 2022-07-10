@@ -23,7 +23,7 @@
                 },
                 {
                   elt: 'ul',
-                  classes: ['ctrls__btn', 'no-visible'],
+                  classes: ['ctrls__btn', 'ctrl__btn0', 'no-visible'],
                   sub: [
                     {
                       elt: 'li',
@@ -49,6 +49,7 @@
       	this.zn[0].sub[0].classes = ['t', `t${rank}`];
       	this.zn[0].sub[1].classes = ['cp__btn', `cp__btn${rank}`];
       	this.zn[0].sub[2].sub[0].classes = ['ctrl__btn', `ctrl__btn${rank}`];
+      	this.zn[0].sub[2].sub[1].classes = ['ctrls__btn', `ctrls__btn${rank}`, 'no-visible'];
       	this.zn[0].sub[2].sub[1].sub[0].classes = ['ad__btn',`ad__btn${rank}`];
       	this.zn[0].sub[2].sub[1].sub[1].classes = ['suppr__bt', `suppr__btn${rank}`];
       	this.zn[0].sub[2].sub[1].sub[2].classes = [`test${rank}`];

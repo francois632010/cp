@@ -31,3 +31,17 @@ let sessionOrLocal = () => {
 	return "no-response";
 }
 build(reg.getStorageTab(sessionOrLocal()));
+
+let listenCtrls = () => {
+	let ctrls = document.getElementsByClassName('ctrl__btn');
+	for (let ctrl of ctrls) {
+		ctrl.addEventListener('click', (e) => {
+			let rank = Array.from(e.target.classList).filter(elt => (/ctrl__btn[0-9]+/).test(elt))[0].slice(9);
+			let cl = document.getElementsByClassName(`ctrls__btn${rank}`)[0].classList;
+			if (cl.contains('no-visible')) {
+				cl.remove('no-visible');
+				}else if (!cl.contains('no-visible')) cl.add('no-visible');
+		});
+	}
+}
+listenCtrls();
