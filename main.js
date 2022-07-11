@@ -21,7 +21,7 @@ let build = (datas = []) => {
 //si un contrôle est activé --> on affiche les contrôle et on lance une fonction listen sur tous les sous contrôle
 
 //initPourProd();
-//init2();
+init2();
 
 //lancer build avec session si session>0 sinon local si local == 0 on ne fait rien
 let sessionOrLocal = () => {
@@ -31,6 +31,15 @@ let sessionOrLocal = () => {
 	return "no-response";
 }
 build(reg.getStorageTab(sessionOrLocal()));
+let testAd = rank => {
+	alert(rank)
+}
+let listenAd = rank => {
+	document.getElementsByClassName(`ad__btn${rank}`)[0].addEventListener('click', () => {
+		alert(rank);
+		//window.location.reload();
+	}, false);
+}
 
 let listenCtrls = () => {
 	let ctrls = document.getElementsByClassName('ctrl__btn');
@@ -40,7 +49,19 @@ let listenCtrls = () => {
 			let cl = document.getElementsByClassName(`ctrls__btn${rank}`)[0].classList;
 			if (cl.contains('no-visible')) {
 				cl.remove('no-visible');
-				}else if (!cl.contains('no-visible')) cl.add('no-visible');
+				
+				listenAd(rank);
+				
+				/*
+				listenSuppr(rank);
+				*/
+				}else if (!cl.contains('no-visible')) {
+					
+					cl.add('no-visible');
+					/*
+					document.getElementsByClassName(`ad__btn${rank}`)[0].removeEventListener
+					*/
+				}
 		});
 	}
 }

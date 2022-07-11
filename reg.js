@@ -14,10 +14,15 @@
 
         return storages.filter(item => parseInt(item[0]) || item[0] == 0).sort(item => item[0]).map(elt => elt[1]);
 
+    };
+
+    let adAZone = (rank, session = true) => {
+        
     }
 
     window.reg = {
-        getStorageTab: getStorageTab
+        getStorageTab: getStorageTab,
+        adAzone: adAZone
     }
 
 
