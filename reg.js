@@ -18,11 +18,17 @@
 
     let adAZone = (rank, session = true) => {
         
+    };
+
+    let regAZone = (rank, st = "", session = true) => {
+        if (session) sessionStorage.setItem(rank, st);
+        if (!session) localStorage.setItem(rank, st);
     }
 
     window.reg = {
         getStorageTab: getStorageTab,
-        adAzone: adAZone
+        adAzone: adAZone,
+        regAZone: regAZone
     }
 
 
