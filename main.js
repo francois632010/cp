@@ -18,8 +18,8 @@ let build = (datas = []) => {
   }
 }
 let init = () => {
-	localStorage.clear();
-	sessionStorage.clear();
+	//localStorage.clear();
+	//sessionStorage.clear();
 	console.log(sessionStorage.length > 0)
 	if (sessionStorage.length > 0) console.log('session');
 	if (localStorage.length > 0 && sessionStorage.length == 0) console.log('local');
@@ -47,7 +47,7 @@ let listenAd = rank => {
 	document.getElementsByClassName(`ad__btn${rank}`)[0].addEventListener('click', () => {
 		reg.regAZone(rk, `zone N° ${rank}`);
 		build(reg.getStorageTab(sessionOrLocal()));
-		//window.location.reload();
+		window.location.reload();
 	}, false);
 }
 
@@ -55,6 +55,9 @@ let listenCtrls = () => {
 	let ctrls = document.getElementsByClassName('ctrl__btn');
 	for (let ctrl of ctrls) {
 		ctrl.addEventListener('click', (e) => {
+			// ligne suivante peut etre supprimer car on passe au sessionStorage
+			// ou alors on continue avec tous en reg la dans session afin d'éviter les rechargements
+			// il faut essayer d'ajouter un bouton en écoute à chaque fois que l'on ajoute une zone
 			let rank = Array.from(e.target.classList).filter(elt => (/ctrl__btn[0-9]+/).test(elt))[0].slice(9);
 			let cl = document.getElementsByClassName(`ctrls__btn${rank}`)[0].classList;
 			if (cl.contains('no-visible')) {
