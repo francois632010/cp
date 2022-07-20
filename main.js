@@ -47,7 +47,10 @@ let listenAd = rank => {
 	document.getElementsByClassName(`ad__btn${rank}`)[0].addEventListener('click', () => {
 		reg.regAZone(rk, `zone N° ${rank}`);
 		build(reg.getStorageTab(sessionOrLocal()));
+		reg.addAZone();
+		alert();
 		window.location.reload();
+		
 	}, false);
 }
 

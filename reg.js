@@ -11,13 +11,17 @@
         if (session) storages = Object.entries(sessionStorage);
         if (!session) storages = Object.entries(localStorage);
 
-
         return storages.filter(item => parseInt(item[0]) || item[0] == 0).sort(item => item[0]).map(elt => elt[1]);
 
     };
 
-    let adAZone = (rank, session = true) => {
+    let addAZone = (rank=0, session = true) => {
+        let tab = getStorageTab(session);
         
+        for (let i = tab.length - 1; i >= 0; i--) {
+            console.log(i)
+        }
+        console.log(tab.length)
     };
 
     let regAZone = (rank, st = "", session = true) => {
@@ -27,7 +31,7 @@
 
     window.reg = {
         getStorageTab: getStorageTab,
-        adAzone: adAZone,
+        addAZone: addAZone,
         regAZone: regAZone
     }
 
