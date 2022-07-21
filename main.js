@@ -45,9 +45,10 @@ build(reg.getStorageTab(sessionOrLocal()));
 let listenAd = rank => {
 	let rk = parseInt(rank) + 1;
 	document.getElementsByClassName(`ad__btn${rank}`)[0].addEventListener('click', () => {
-		reg.regAZone(rk, `zone N° ${rank}`);
+		//reg.regAZone(rk, `zone N° ${rank}`);
+		reg.addAZone(rk, `zone N° ${rk}`);
 		build(reg.getStorageTab(sessionOrLocal()));
-		reg.addAZone();
+		
 		alert();
 		window.location.reload();
 		
@@ -81,4 +82,23 @@ let listenCtrls = () => {
 		});
 	}
 }
+let listen = () => {
+	document.getElementById('reg__btn').addEventListener('click', reg.reg)
+}
+
+let listenChange = () => {
+	let ts = document.getElementsByClassName('t');
+	
+	for (let t of ts) {
+		t.addEventListener('blur', (e) => {
+			let rank = Array.from(e.target.classList).filter(elt => (/t[0-9]+/).test(elt))[0].slice(1);
+			console.log(e)
+			reg.regAZone(rank, e.target.value);
+		})
+	}
+}
+listenChange();
+
+document.addEventListener('onchange', reg.reg);
+listen();
 listenCtrls();

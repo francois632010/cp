@@ -15,24 +15,40 @@
 
     };
 
-    let addAZone = (rank=0, session = true) => {
+    let addAZone = (rank=0, st = "", session = true) => {
         let tab = getStorageTab(session);
-        
-        for (let i = tab.length - 1; i >= 0; i--) {
-            console.log(i)
+        if (tab.length == 1) regAZone(1, st)
+        if (tab.length > 1) for (let i = tab.length - 1; i >= rank; i--) {
+            regAZone(i + 1, sessionStorage.getItem(i));
+            if (i == rank) regAZone(rank, "")
         }
+        if (tab.length == rank) regAZone(rank, "der")
+        
         console.log(tab.length)
     };
 
     let regAZone = (rank, st = "", session = true) => {
         if (session) sessionStorage.setItem(rank, st);
         if (!session) localStorage.setItem(rank, st);
+    };
+
+    let reg = () => {
+        // fct de transition sera modifiée aprés
+        let t = document.getElementsByClassName('t');
+        //console.log(t[1].innerHTML)
+        for (let i = 0; i < t.length; i++) {
+            //alert(t[i].value)
+            regAZone(i, t[i].value);
+        }
+        
+        console.log(sessionStorage)
     }
 
     window.reg = {
         getStorageTab: getStorageTab,
         addAZone: addAZone,
-        regAZone: regAZone
+        regAZone: regAZone,
+        reg: reg
     }
 
 
