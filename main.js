@@ -46,15 +46,19 @@ let listenAd = rank => {
 	let rk = parseInt(rank) + 1;
 	document.getElementsByClassName(`ad__btn${rank}`)[0].addEventListener('click', () => {
 		//reg.regAZone(rk, `zone N° ${rank}`);
-		reg.addAZone(rk, `zone N° ${rk}`);
-		build(reg.getStorageTab(sessionOrLocal()));
+		reg.addAZone(rk, `zone N° ${rk}`);		
 		
-		alert();
-		window.location.reload();
+		window.location.reload();//permet de relancer les listen en partant de zero --> sinon on ecoute plusieurs fois et on ajoute plusieurs zones
 		
+		//build(reg.getStorageTab(sessionOrLocal()));
+		//pas besoin de la ligne precedente --> grace au reload();
 	}, false);
 }
-
+let listenSuppr = rank => {
+	document.getElementsByClassName(`suppr__btn${rank}`)[0].addEventListener('click', () => {
+		reg.supprAZone(rank);
+	},false);
+}
 let listenCtrls = () => {
 	let ctrls = document.getElementsByClassName('ctrl__btn');
 	for (let ctrl of ctrls) {
@@ -68,13 +72,14 @@ let listenCtrls = () => {
 				cl.remove('no-visible');
 				
 				listenAd(rank);
-				
+				listenSuppr(rank);
 				/*
 				listenSuppr(rank);
 				*/
 				}else if (!cl.contains('no-visible')) {
 					
 					cl.add('no-visible');
+					window.location.reload();
 					/*
 					document.getElementsByClassName(`ad__btn${rank}`)[0].removeEventListener
 					*/
@@ -82,7 +87,7 @@ let listenCtrls = () => {
 		});
 	}
 }
-let listen = () => {
+let listenReg = () => {
 	document.getElementById('reg__btn').addEventListener('click', reg.reg)
 }
 
@@ -90,15 +95,15 @@ let listenChange = () => {
 	let ts = document.getElementsByClassName('t');
 	
 	for (let t of ts) {
-		t.addEventListener('blur', (e) => {
+		t.addEventListener('change', (e) => {
 			let rank = Array.from(e.target.classList).filter(elt => (/t[0-9]+/).test(elt))[0].slice(1);
 			console.log(e)
 			reg.regAZone(rank, e.target.value);
 		})
 	}
 }
-listenChange();
+//listenChange();
 
-document.addEventListener('onchange', reg.reg);
-listen();
+document.addEventListener('change', reg.reg);
+listenReg();
 listenCtrls();

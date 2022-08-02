@@ -16,6 +16,7 @@
     };
 
     let addAZone = (rank=0, st = "", session = true) => {
+    //supprime le session ? --> oui car cela se passe forcement dans la session
         let tab = getStorageTab(session);
         if (tab.length == 1) regAZone(1, st)
         if (tab.length > 1) for (let i = tab.length - 1; i >= rank; i--) {
@@ -26,7 +27,10 @@
         
         console.log(tab.length)
     };
-
+	let supprAZone = rank => {
+		console.log('supprAZone au rank : ' + rank);
+		
+	}
     let regAZone = (rank, st = "", session = true) => {
         if (session) sessionStorage.setItem(rank, st);
         if (!session) localStorage.setItem(rank, st);
@@ -47,6 +51,7 @@
     window.reg = {
         getStorageTab: getStorageTab,
         addAZone: addAZone,
+        supprAZone: supprAZone,
         regAZone: regAZone,
         reg: reg
     }
