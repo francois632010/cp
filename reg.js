@@ -10,8 +10,8 @@
 
         if (session) storages = Object.entries(sessionStorage);
         if (!session) storages = Object.entries(localStorage);
-
-        return storages.filter(item => parseInt(item[0]) || item[0] == 0).sort(item => item[0]).map(elt => elt[1]);
+        
+        return storages.filter(item => parseInt(item[0]) || item[0] == 0).sort((a, b) => a[0] - b[0]).map(elt => elt[1]);
 
     };
 
@@ -40,6 +40,8 @@
         // fct de transition sera modifiée aprés
         let t = document.getElementsByClassName('t');
         //console.log(t[1].innerHTML)
+        //alert();
+        sessionStorage.clear();
         for (let i = 0; i < t.length; i++) {
             //alert(t[i].value)
             regAZone(i, t[i].value);

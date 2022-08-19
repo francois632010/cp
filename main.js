@@ -8,11 +8,12 @@ let init2 = () => {
 	localStorage.setItem("1", "Boum !!!");
 	}
 let build = (datas = []) => {
+	
   if (datas.length > 0) {
     document.getElementsByTagName('form')[0].removeChild(document.getElementsByTagName('article')[0]);
     for (let i = 0; i < datas.length; i++) {
     	elt.addAZone(datas[i], i);
-    	document.getElementsByTagName('textArea')[i].innerHTML = datas[i];
+    	document.getElementsByClassName(`t${i}`)[0].innerHTML = datas[i];
     }
     
   }
@@ -88,7 +89,7 @@ let listenCtrls = () => {
 	}
 }
 let listenReg = () => {
-	document.getElementById('reg__btn').addEventListener('click', reg.reg)
+	document.getElementById('reg__btn').addEventListener('click',reg.reg)
 }
 
 let listenChange = () => {
@@ -97,7 +98,7 @@ let listenChange = () => {
 	for (let t of ts) {
 		t.addEventListener('change', (e) => {
 			let rank = Array.from(e.target.classList).filter(elt => (/t[0-9]+/).test(elt))[0].slice(1);
-			console.log(e)
+			
 			reg.regAZone(rank, e.target.value);
 		})
 	}
