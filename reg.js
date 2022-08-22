@@ -36,7 +36,7 @@
         if (!session) localStorage.setItem(rank, st);
     };
 
-    let reg = () => {
+    let reg = (session = true) => {
         // fct de transition sera modifiée aprés
         let t = document.getElementsByClassName('t');
         //console.log(t[1].innerHTML)
@@ -44,7 +44,8 @@
         sessionStorage.clear();
         for (let i = 0; i < t.length; i++) {
             //alert(t[i].value)
-            regAZone(i, t[i].value);
+            //à changer pour `t{i}`
+            regAZone(i, t[i].value, session);
         }
         
         console.log(sessionStorage)

@@ -17,6 +17,7 @@ let build = (datas = []) => {
     }
     
   }
+  if (!sessionOrLocal()) reg.reg();
 }
 let init = () => {
 	//localStorage.clear();
@@ -89,7 +90,9 @@ let listenCtrls = () => {
 	}
 }
 let listenReg = () => {
-	document.getElementById('reg__btn').addEventListener('click',reg.reg)
+	document.getElementById('reg__btn').addEventListener('click',() => {
+		reg.reg(false)
+	})
 }
 
 let listenChange = () => {
