@@ -59,6 +59,7 @@ let listenAd = rank => {
 let listenSuppr = rank => {
 	document.getElementsByClassName(`suppr__btn${rank}`)[0].addEventListener('click', () => {
 		reg.supprAZone(rank);
+		window.location.reload();
 	},false);
 }
 let listenCtrls = () => {

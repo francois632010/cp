@@ -29,6 +29,15 @@
     };
 	let supprAZone = rank => {
 		console.log('supprAZone au rank : ' + rank);
+        let tab = getStorageTab(true);
+        if (tab.length == 1) return false;
+        if (tab.length > 1) {
+            for (let i = rank; i <= tab.length - 2; i++) {
+                let j = parseInt(i) + 1;
+                regAZone(i, sessionStorage.getItem(j));
+            }
+            sessionStorage.removeItem(`${tab.length - 1}`);
+        }
 		
 	}
     let regAZone = (rank, st = "", session = true) => {
@@ -39,9 +48,11 @@
     let reg = (session = true) => {
         // fct de transition sera modifiée aprés
         let t = document.getElementsByClassName('t');
+        
         //console.log(t[1].innerHTML)
         //alert();
-        sessionStorage.clear();
+        if (session) sessionStorage.clear();
+        if (!session) localStorage.clear();
         for (let i = 0; i < t.length; i++) {
             //alert(t[i].value)
             //à changer pour `t{i}`
