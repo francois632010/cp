@@ -1,12 +1,3 @@
-let initPourProd = () => {
-  sessionStorage.setItem("0", "ho ho ho");
-  sessionStorage.setItem("1", "c'est le père noël !!!");
-  sessionStorage.setItem("2", "hello world !!!");
-}
-let init2 = () => {
-	localStorage.setItem("0", "ho pla");
-	localStorage.setItem("1", "Boum !!!");
-	}
 let build = (datas = []) => {
 	
   if (datas.length > 0) {
@@ -20,22 +11,10 @@ let build = (datas = []) => {
   if (!sessionOrLocal()) reg.reg();
 }
 let init = () => {
-	//localStorage.clear();
-	//sessionStorage.clear();
-	console.log(sessionStorage.length > 0)
 	if (sessionStorage.length > 0) console.log('session');
 	if (localStorage.length > 0 && sessionStorage.length == 0) console.log('local');
 	if (localStorage.length == 0 && sessionStorage.length == 0) reg.regAZone(0, 'Welcoooooome !!!!!');
 }
-
-init();
-//fonction listen sur tous les contrôles
-//si un contrôle est activé --> on affiche les contrôle et on lance une fonction listen sur tous les sous contrôle
-
-//initPourProd();
-//init2();
-
-//lancer build avec session si session>0 sinon local si local == 0 on ne fait rien
 let sessionOrLocal = () => {
 	if (sessionStorage.length > 0) return true;
 	if (localStorage.length > 0) return false;
@@ -47,13 +26,9 @@ build(reg.getStorageTab(sessionOrLocal()));
 let listenAd = rank => {
 	let rk = parseInt(rank) + 1;
 	document.getElementsByClassName(`ad__btn${rank}`)[0].addEventListener('click', () => {
-		//reg.regAZone(rk, `zone N° ${rank}`);
 		reg.addAZone(rk, `zone N° ${rk}`);		
 		
-		window.location.reload();//permet de relancer les listen en partant de zero --> sinon on ecoute plusieurs fois et on ajoute plusieurs zones
-		
-		//build(reg.getStorageTab(sessionOrLocal()));
-		//pas besoin de la ligne precedente --> grace au reload();
+		window.location.reload();
 	}, false);
 }
 let listenSuppr = rank => {
@@ -76,16 +51,11 @@ let listenCtrls = () => {
 				
 				listenAd(rank);
 				listenSuppr(rank);
-				/*
-				listenSuppr(rank);
-				*/
+
 				}else if (!cl.contains('no-visible')) {
 					
 					cl.add('no-visible');
 					window.location.reload();
-					/*
-					document.getElementsByClassName(`ad__btn${rank}`)[0].removeEventListener
-					*/
 				}
 		});
 	}
@@ -95,7 +65,7 @@ let listenReg = () => {
 		reg.reg(false)
 	})
 }
-
+/*
 let listenChange = () => {
 	let ts = document.getElementsByClassName('t');
 	
@@ -107,8 +77,8 @@ let listenChange = () => {
 		})
 	}
 }
-//listenChange();
-
+*/
+init();
 document.addEventListener('change', reg.reg);
 listenReg();
 listenCtrls();

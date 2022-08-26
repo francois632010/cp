@@ -16,7 +16,6 @@
     };
 
     let addAZone = (rank=0, st = "", session = true) => {
-    //supprime le session ? --> oui car cela se passe forcement dans la session
         let tab = getStorageTab(session);
         if (tab.length == 1) regAZone(1, st)
         if (tab.length > 1) for (let i = tab.length - 1; i >= rank; i--) {
@@ -46,15 +45,11 @@
     };
 
     let reg = (session = true) => {
-        // fct de transition sera modifiée aprés
         let t = document.getElementsByClassName('t');
-        
-        //console.log(t[1].innerHTML)
-        //alert();
+;
         if (session) sessionStorage.clear();
         if (!session) localStorage.clear();
         for (let i = 0; i < t.length; i++) {
-            //alert(t[i].value)
             //à changer pour `t{i}`
             regAZone(i, t[i].value, session);
         }

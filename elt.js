@@ -53,16 +53,9 @@
       	this.zn[0].sub[2].sub[1].sub[0].classes = ['ad__btn',`ad__btn${rank}`];
       	this.zn[0].sub[2].sub[1].sub[1].classes = ['suppr__bt', `suppr__btn${rank}`];
       	this.zn[0].sub[2].sub[1].sub[2].classes = [`test${rank}`];
-      	//console.log(this.zn[0].sub[0]);
-      	
       	}
   }
-/*
-  Zone.prototype.makeClasses = (rank) => {
-    console.log('N° du rang : ' + rank)
-    console.log(Zone)
-  }
-*/
+
   let buildElt = (what, ID, classes = [], inner = "") => {
     let newElt = document.createElement(what);
     if (ID != "") newElt.setAttribute('id', ID);
@@ -82,7 +75,6 @@
   		if (elt.inner) inner = elt.inner;
   		
   		newElt = buildElt(elt.elt, id, classes, inner);
-  		//newElt.innerHTML = 'HEY HEY';
   		father.appendChild(newElt);
   		
   		if (elt.sub) downOnZone(elt.sub, newElt);
@@ -96,16 +88,6 @@
   	let newZone = new Zone(rank);
   	newZone.makeClasses();
     downOnZone(newZone.zn, document.getElementsByTagName('form')[0]);
-  /*
-    console.log(st + " au rang : " + rank);
-    let newZone = buildElt('textArea', "", [`t${rank}`]);
-    newZone.value = st;
-    
-    document.getElementsByTagName('form')[0].appendChild(newZone);
-
-    let testZone = new Zone(["a", `a${rank}`], ['t', `t${rank}`], ['cp__btn', `cp__btn${rank}`]);
-    console.log(testZone)
-*/
   }
   
   
