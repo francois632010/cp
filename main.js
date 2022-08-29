@@ -65,6 +65,20 @@ let listenReg = () => {
 		reg.reg(false)
 	})
 }
+let listenCps = () => {
+	let cps = document.getElementsByClassName('cp__btn');
+	for (let cp of cps) {
+		cp.addEventListener('click', (e) => {
+			let rank = Array.from(e.target.classList).filter(elt => (/cp__btn[0-9]+/).test(elt))[0].slice(7);
+			//let val = document.getElementsByClassName(`t${rank}`)[0].value;
+			if (navigator.clipboard) {
+				navigator.clipboard.writeText(document.getElementsByClassName(`t${rank}`)[0].value);
+			  }
+			//document.getElementsByClassName(`t${rank}`)[0].select();
+			//document.execCommand('copy');
+		});
+	}
+}
 /*
 let listenChange = () => {
 	let ts = document.getElementsByClassName('t');
@@ -82,3 +96,4 @@ init();
 document.addEventListener('change', reg.reg);
 listenReg();
 listenCtrls();
+listenCps();
