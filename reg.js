@@ -51,7 +51,7 @@
         if (!session) localStorage.clear();
         for (let i = 0; i < t.length; i++) {
             //à changer pour `t{i}`
-            regAZone(i, t[i].value, session);
+            regAZone(i, t[i].innerHTML, session);
         }
         
         console.log(sessionStorage)

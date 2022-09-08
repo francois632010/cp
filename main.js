@@ -1,8 +1,9 @@
-let build = (datas = []) => {
+let build = ([...datas] = []) => {
 	
   if (datas.length > 0) {
     document.getElementsByTagName('form')[0].removeChild(document.getElementsByTagName('article')[0]);
     for (let i = 0; i < datas.length; i++) {
+		readText.getText(datas[i]);
     	elt.addAZone(datas[i], i);
     	document.getElementsByClassName(`t${i}`)[0].innerHTML = datas[i];
     }
@@ -70,12 +71,22 @@ let listenCps = () => {
 	for (let cp of cps) {
 		cp.addEventListener('click', (e) => {
 			let rank = Array.from(e.target.classList).filter(elt => (/cp__btn[0-9]+/).test(elt))[0].slice(7);
+			let readingText = document.getElementsByClassName(`t${rank}`)[0].value;
+			let cpText = readText.getText(readingText);
 			//let val = document.getElementsByClassName(`t${rank}`)[0].value;
 			if (navigator.clipboard) {
-				navigator.clipboard.writeText(document.getElementsByClassName(`t${rank}`)[0].value);
+				navigator.clipboard.writeText(cpText);
 			  }
 			//document.getElementsByClassName(`t${rank}`)[0].select();
 			//document.execCommand('copy');
+		});
+	}
+}
+let listenTs = () => {
+	let ts = document.getElementsByClassName('t');
+	for (let t of ts) {
+		t.addEventListener('blur', (e) => {
+			reg.reg();
 		});
 	}
 }
@@ -97,3 +108,4 @@ document.addEventListener('change', reg.reg);
 listenReg();
 listenCtrls();
 listenCps();
+listenTs();

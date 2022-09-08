@@ -7,7 +7,8 @@
           elt: "article",
           sub: [
             {
-              elt: "textarea"
+              elt: "div",
+              contentEditable: true
             },
             {
               elt: "div",
@@ -56,11 +57,12 @@
       	}
   }
 
-  let buildElt = (what, ID, classes = [], inner = "") => {
+  let buildElt = (what, ID, classes = [], inner = "", contentEditable = false) => {
     let newElt = document.createElement(what);
     if (ID != "") newElt.setAttribute('id', ID);
     if (classes) for (let elt of classes) newElt.classList.add(elt);
     if (inner != "") newElt.innerHTML = inner;
+    if (contentEditable) newElt.contentEditable = true;
 
     return newElt;
   }
@@ -70,11 +72,13 @@
   	 	let classes = null;
   	 	let inner = "";
   	 	let newElt = null;
+      let contentEditable = false;
   		if (elt.id) id = elt.id;
   		if (elt.classes) classes = [...elt.classes];
   		if (elt.inner) inner = elt.inner;
+      if (elt.contentEditable) contentEditable = elt.contentEditable;
   		
-  		newElt = buildElt(elt.elt, id, classes, inner);
+  		newElt = buildElt(elt.elt, id, classes, inner, contentEditable);
   		father.appendChild(newElt);
   		
   		if (elt.sub) downOnZone(elt.sub, newElt);
