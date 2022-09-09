@@ -8,15 +8,44 @@
 				display: none;
 			}
 			.t {
-				width : 100mm;
+				width : 200mm;
+				height: 10mm;
+				border: solid blue 1px;
+			}
+			.menu {
+				display: flex;
+			}
+			.fct-choice {
+				position: fixed;
+				top: 25mm;
+				left: 50mm;
+				padding: 5mm;
+				border: solid black 2px;
+				background-color:antiquewhite;
+			}
+			.field-choice-fct {
+				width: 50mm;
 				height: 10mm;
 				border: solid blue 1px;
 			}
 			</style>
 	</head>
 	<body>
+		<div class="fct-choice no-visible" id="fct-choice" contenteditable="true">
+			<div class="field-choice-fct"></div>
+			<div class="fct-choice__btn" id="fct-choice__btn--esc">Annuler</div>
+			<div class="fct-choice__btn" id="fct-choice__btn--ok">OK</div>
+		</div>
 		<form>
-			<div class="reg__btn" id = "reg__btn">REG</div>
+			<div class="menu">
+				<div class="reg__btn" id = "reg__btn">REG</div>
+				<div class="menu-fct__btn" id="menu-fct__btn">
+					Fonction
+					<div class="fct-show__btn no-visible">Afficher</div>
+					<div class="fct-new__btn no-visible" id="fct-new__btn">Inserer</div> 
+				</div>
+			</div>
+
 			<article class="a a0">
 				<textarea class="t t0"></textarea>
 				<div class="cp__btn cp__btn0">Copier</div>

@@ -66,6 +66,25 @@ let listenReg = () => {
 		reg.reg(false)
 	})
 }
+let listenFctNew = () => {
+	document.getElementById('fct-new__btn').addEventListener('click', () => {
+		document.getElementById('fct-choice').classList.remove('no-visible');
+	})
+}
+let listenFct = () => {
+	document.getElementById('menu-fct__btn').addEventListener('click', () => {
+		let menuFctSubs = document.querySelectorAll('#menu-fct__btn div');
+		for (item of menuFctSubs) {
+			console.log(item.classList.contains('no-visible'));
+			if (item.classList.contains('no-visible')) {
+				item.classList.remove('no-visible');
+				listenFctNew();
+			} else if (!item.classList.contains('no-visible')) {
+				item.classList.add('no-visible');
+			}
+		}
+	})
+}
 let listenCps = () => {
 	let cps = document.getElementsByClassName('cp__btn');
 	for (let cp of cps) {
@@ -86,6 +105,7 @@ let listenTs = () => {
 	let ts = document.getElementsByClassName('t');
 	for (let t of ts) {
 		t.addEventListener('blur', (e) => {
+			console.log(e);
 			reg.reg();
 		});
 	}
@@ -106,6 +126,7 @@ let listenChange = () => {
 init();
 document.addEventListener('change', reg.reg);
 listenReg();
+listenFct();
 listenCtrls();
 listenCps();
 listenTs();
