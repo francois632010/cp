@@ -66,9 +66,19 @@ let listenReg = () => {
 		reg.reg(false)
 	})
 }
+let listenFieldFct = () => {
+	let fcts = document.getElementsByClassName('field-choice-fct');
+	for (let fct of fcts) {
+		fct.addEventListener('click', (e) => {
+			console.log(e)
+			navigator.clipboard.writeText(`::${e.target.innerHTML}::`);
+		})
+	}
+}
 let listenFctNew = () => {
 	document.getElementById('fct-new__btn').addEventListener('click', () => {
 		document.getElementById('fct-choice').classList.remove('no-visible');
+		listenFieldFct();
 	})
 }
 let listenFct = () => {
